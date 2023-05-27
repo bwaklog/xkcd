@@ -1,6 +1,10 @@
 import requests
 import json
 import sys
+import subprocess
+from PIL import Image
+from io import BytesIO
+import os
 
 
 def get_latest_comic(verbose):
@@ -55,29 +59,41 @@ def get_comic(verbose=False, comic="latest"):
         comic_request = requests.get(
             f"https://xkcd.com/{str(latest_comic)}/info.0.json")
         comic = Comic(comic_request.json())
-        comic.display()
-        return "👋🐍 hisss."
+        return comic
 
     else:
         comic_number = str(comic)
         comic_request = requests.get(
             f"https://xkcd.com/{comic_number}/info.0.json")
         comic = Comic(comic_request.json())
+        return comic
+
+
+verbose, comic = False, "latest"
+flags = sys.argv[1:]
+# print(flags)
+if flags != []:
+    if flags[0] in ['-l', '--latest']:
+        print("🚀 Getting latest comic")
+        comic = get_comic(verbose, comic)
         comic.display()
+    elif flags[0].isdigit():
+        print(f"🔎 Fetching comic {flags[0]}")
+        comic = get_comic(verbose, flags[0])
+        comic.display()
+    if len(flags) > 1:
+        if '-q' or '--ql' in flags:
+            print("Trying Quick Look")
 
-        return "👋🐍 hisss."
+            comic_img = Image.open(
+                BytesIO(requests.get(comic.img).content)).save('buff.png')
 
+            try:
+                subprocess.Popen(["qlmanage", "-p", 'buff.png'])
+            except FileNotFoundError:
+                print("Quick Look is not available on this system")
 
-if __name__ == "__main__":
-    verbose, comic = False, "latest"
-    flags = sys.argv[1:]
-    print(flags)
-    if flags != []:
-        if flags[0] in ['-l', '--latest']:
-            print("🚀 Getting latest comic")
-            print(get_comic(verbose, comic))
-        elif flags[0].isdigit():
-            print(f"🔎 Fetching comic {flags[0]}")
-            print(get_comic(verbose, flags[0]))
-    else:
-        print("No flags passed")
+            os.wait()
+            os.remove('buff.png')
+else:
+    print("No flags passed")
