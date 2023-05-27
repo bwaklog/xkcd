@@ -95,5 +95,6 @@ if flags != []:
 
             os.wait()
             os.remove('buff.png')
+            print("👋🐍 hiss.")
 else:
     print("No flags passed")
