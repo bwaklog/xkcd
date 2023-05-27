@@ -10,7 +10,7 @@ import os
 def get_latest_comic(verbose):
     exists = True
     # Check last saved latest checkpoint
-    with open("latest.txt", "r") as f:
+    with open("/Users/adityahegde/Documents/GitHub/xkcd_view/resources/latest.txt", "r") as f:
         comic = int(f.read())
     while exists:
         if verbose:
@@ -19,7 +19,7 @@ def get_latest_comic(verbose):
         if req.status_code != 404:
             # open latest.txt in write mode and write
             # the latest comic to file
-            with open("latest.txt", "w") as f:
+            with open("/Users/adityahegde/Documents/GitHub/xkcd_view/resources/latest.txt", "w") as f:
                 f.write(str(comic))
                 f.flush()
             comic += 1
@@ -85,7 +85,7 @@ if flags != []:
         comic = get_comic(verbose, flags[0])
         comic.display()
     if len(flags) > 1:
-        if '-q' or '--ql' in flags:
+        if flags[1] in ['-q', '--ql']:
             print("Trying Quick Look")
 
             comic_img = Image.open(
