@@ -49,6 +49,9 @@ XKCD Comic {self.num}
         """
         print(display_text)
 
+    def show(self):
+        Image.open(BytesIO(requests.get(self.img).content)).show()
+
 
 def get_comic(verbose=False, comic="latest"):
     latest_comic = get_latest_comic(verbose)
