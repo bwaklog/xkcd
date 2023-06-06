@@ -1,5 +1,4 @@
 import requests
-import json
 import sys
 import subprocess
 from PIL import Image
@@ -84,6 +83,8 @@ if flags != []:
         print(f"🔎 Fetching comic {flags[0]}")
         comic = get_comic(verbose, flags[0])
         comic.display()
+    elif flags[0] in ['-a', '--all']:
+        pass
     if len(flags) > 1:
         if flags[1] in ['-q', '--ql']:
             print("Trying Quick Look")
