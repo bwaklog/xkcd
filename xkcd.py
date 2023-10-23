@@ -9,7 +9,7 @@ import os
 def get_latest_comic(verbose):
     exists = True
     # Check last saved latest checkpoint
-    with open("/Users/adityahegde/Documents/GitHub/xkcd_view/resources/latest.txt", "r") as f:
+    with open("./latest.txt", "r") as f:
         comic = int(f.read())
     while exists:
         if verbose:
@@ -18,7 +18,7 @@ def get_latest_comic(verbose):
         if req.status_code != 404:
             # open latest.txt in write mode and write
             # the latest comic to file
-            with open("/Users/adityahegde/Documents/GitHub/xkcd_view/resources/latest.txt", "w") as f:
+            with open("./latest.txt", "w") as f:
                 f.write(str(comic))
                 f.flush()
             comic += 1
