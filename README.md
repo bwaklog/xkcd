@@ -24,6 +24,15 @@ This is a small project, made with python to fetch a comic of your choice from t
   - 📩 Creating a sharing option. Send your favourite comics to your friends with a few clicks!
   - Umm...A neat interface cuz I dont want get myself using tkinter or some other boring looking tool.
 - There was supposed to be an `install.sh` script to add the `xkcd.sh` script to your alias but that didn't seem to work cuz idk how to do that
+  <br /><br />
+
+### Tabulated stuff for professionalism 🫡
+  |ツ|**Feature**|**Progress**|
+  ---|---|---
+  |💾|Local Storage Option|🔘|
+  |❤️|Liking\Bookmarking option to save comic no and not on local storage|🔘|
+  |📩|Sharing feature (undecided)|WAP|
+  |🤔|Flask generated page|TBA|
 
 
 ## Requirements 
