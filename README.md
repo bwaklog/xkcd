@@ -1,30 +1,43 @@
-# XKCD VIEWER v1.2
-<a target="_blank" href="https://colab.research.google.com/github/bwaklog/xkcd_view/blob/master/xkcd_comic.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
+# xkcd comics fetched using terminal 🥳
 
-Demo
+Hey 👋
+This is a small project, made with python to fetch a comic of your choice from the thousands of xkcd comic stack using the existing xkcd api.
 
-    I created an alias in ~/.zshrc do this
-    Hence explaining why I used an absolute file reference
 
+# Table of Contents
+1. [Cool Stuff](#cool-stuff)
+2. [Yet To Come](#yet-to-come)
+3. [Requirements](#requirements)
+4. [Demo](#demo)
+
+
+## Cool stuff: 
+<a name="cool-stuff"></a>
+- currently has quick look integration 🤯🤯
+
+## Yet to come 
+<a name="yet-to-come"></a>
+- _Create a web interface using **flask**._..<br />
+  May or may not go ahead with this option cuz using the website is a better option🫠, but here is what I want to achieve by creating a local running web interface (or hopefully one hosted on something like heroku which is a pain to work with)
+  - 💾 Local Storage options for comics
+  - ❤️ Creating Bookmark/Liking features
+  - 📩 Creating a sharing option. Send your favourite comics to your friends with a few clicks!
+  - Umm...A neat interface cuz I dont want get myself using tkinter or some other boring looking tool.
+- There was supposed to be an `install.sh` script to add the `xkcd.sh` script to your alias but that didn't seem to work cuz idk how to do that
+
+
+## Requirements 
+<a name="requirements"></a>
+What i'm using for this program:
+- This isn't really a disclaimer but if you dont have quicklook (macos only), thats no problem! But for now all you get is:
+  - 🔗 A link to the image of the post. You can open it in your default browser
+  - A _very very very_ descriptive info of the post you requested for ツ
+- Yeah, I haven't used this on a windows pc so far, and some of these..._**most of these**_ commands are _unix_ commands so, **join the the Force with BASH 🕺**
+- running this in a venv for devlopment, so do make sure you install all the requirements from `requirements.txt`
+- Thats it for now...nothing else to force you to install..**other than python3**🐍
+
+
+## Demo 
+<a name="demo"></a>
+here is a small demo from an _old recording_
 ![xkcd_cli](https://github.com/bwaklog/xkcd_view/assets/91192289/e475f168-6286-4636-a4f4-fc8ba1e00351)
-
-
----
-**NOTE :** Change the file path for accessing `latest.txt`
-
-``` python
-
-def get_latest_comic(verbose):
-    # -- snip --
-    with open(< path to latest.txt >, "r") as f:
-        # -- snip --
-    while exists:
-        # -- snip --
-        if req.status_code != 404:
-            # -- snip --
-            with open(< path to latest.txt >, "w") as f:
-                # -- snip --
-
-```
