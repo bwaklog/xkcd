@@ -1,5 +1,8 @@
 # xkcd comics fetched using terminal 🥳
 
+![xkcd](https://github.com/bwaklog/xkcd-grab/assets/91192289/29085083-88b4-45af-ad4c-ef6e9000150f)
+
+
 Hey 👋
 This is a small project, made with python to fetch a comic of your choice from the thousands of xkcd comic stack using the existing xkcd api.
 
