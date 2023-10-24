@@ -21,8 +21,8 @@ This is a small project, made with python to fetch a comic of your choice from t
   May or may not go ahead with this option cuz using the website is a better option🫠, but here is what I want to achieve by creating a local running web interface (or hopefully one hosted on something like heroku which is a pain to work with)
   - 💾 Local Storage options for comics
   - ❤️ Creating Bookmark/Liking features
-  - 📩 Creating a sharing option. Send your favourite comics to your friends with a few clicks!
-  - Umm...A neat interface cuz I dont want get myself using tkinter or some other boring looking tool.
+  - 📩 Creating a sharing option. Send your favorite comics to your friends with a few clicks!
+  - Umm...A neat interface cuz I don't want get myself using tkinter or some other boring looking tool.
 - There was supposed to be an `install.sh` script to add the `xkcd.sh` script to your alias but that didn't seem to work cuz idk how to do that
   <br /><br />
 
@@ -38,12 +38,12 @@ This is a small project, made with python to fetch a comic of your choice from t
 ## Requirements 
 <a name="requirements"></a>
 What i'm using for this program:
-- This isn't really a disclaimer but if you dont have quicklook (macos only), thats no problem! But for now all you get is:
+- This isn't really a disclaimer but if you don't have quick-look (MacOS only), that's no problem! But for now all you get is:
   - 🔗 A link to the image of the post. You can open it in your default browser
   - A _very very very_ descriptive info of the post you requested for ツ
-- Yeah, I haven't used this on a windows pc so far, and some of these..._**most of these**_ commands are _unix_ commands so, **join the the Force with BASH 🕺**
-- running this in a venv for devlopment, so do make sure you install all the requirements from `requirements.txt`
-- Thats it for now...nothing else to force you to install..**other than python3**🐍
+- Yeah, I haven't used this on a windows pc so far, and some of these..._**most of these**_ commands are _UNIX_ commands so, **join the the Force with BASH 🕺**
+- running this in a venv for development, so do make sure you install all the requirements from `requirements.txt`
+- That's it for now...nothing else to force you to install..**other than python3**🐍
 
 
 ## Demo 
