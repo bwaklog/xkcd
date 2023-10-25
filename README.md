@@ -8,10 +8,49 @@ This is a small project, made with python to fetch a comic of your choice from t
 
 
 # Table of Contents
-1. [Cool Stuff](#cool-stuff)
-2. [Yet To Come](#yet-to-come)
-3. [Requirements](#requirements)
-4. [Demo](#demo)
+1. [Usage](#usage)
+    - [Commands Available](#commands-available)  
+2. [Cool Stuff](#cool-stuff)
+3. [Yet To Come](#yet-to-come)
+4. [Requirements](#requirements)
+5. [Demo](#demo)
+
+## Usage: 
+<a name="usage"></a>
+- Clone the repository with `git clone https://github.com/bwaklog/xkcd-grab`
+- What is supposed to work doesn't 🫠...To install the requirements and _hop_ into the venv, run the script
+  ```shell
+  ./install.sh
+  ```
+    <img width="540" alt="image" src="https://github.com/bwaklog/xkcd-grab/assets/91192289/972e96eb-9e6a-4002-a78f-753ec14c5037">
+- So for some reason, it doesn't automatically use the `venv` as the source, so just go ahead and run the command
+  ```shell
+  . venv/bin/activate 
+  ```
+  And another issue, it is supposed to create an alias to the shell command `./xkcd.sh` which for some reason doesn't work so gotta look into that. So for that purpose, to make your cli commands _neater_ use this
+  ```shell
+  alias xkcd='./xkcd.sh'
+  ```
+  Now you are mostly ready to go 🔥
+- Here is a small cheat sheet for the commands that are available
+
+  ### Commands Available
+  <a name="commands-available"></a>
+  ```
+  usage: xkcd [ -l | --latest | <a valid comic number>] [ -q | --ql ]
+
+  These are some of the xkcd commands that can be used in various situations
+
+  To fetch comics
+    latest comic [ -l | --latest ]        This is flag passed to fetch the latest comic
+    comic [ <valid comic number: int> ]   Pass a valid integer to get that comic num
+
+  Using quick Look ( 🍎 MacOS only )
+    [ -q | --ql ]                         This creates a buffer image to show the comic
+                                          instead of clicking the external link
+
+  More commands yet to come 😁
+  ```
 
 
 ## Cool stuff: 
