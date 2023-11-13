@@ -1,0 +1,22 @@
+      _           _                       _     
+__  _| | _____ __| |       __ _ _ __ __ _| |__  
+\ \/ / |/ / __/ _` |_____ / _` | '__/ _` | '_ \ 
+ >  <|   < (_| (_| |_____| (_| | | | (_| | |_) |
+/_/\_\_|\_\___\__,_|      \__, |_|  \__,_|_.__/ 
+                          |___/                 
+
+usage: xkcd [ -l | --latest | <comic num>] 
+            [ -q | --ql ] [-h | --help ]
+
+These are some of the xkcd commands that can be 
+used in various situations
+
+To fetch comics
+[ -l | --latest ]               This is flag passed to fetch the latest comic
+[ <valid comic number: int> ]   Pass a valid integer to get that comic num
+
+Using quick Look ( 🍎 MacOS only )
+[ -q | --ql ]                   This creates a buffer image to show the comic
+                                instead of clicking the external link
+
+More commands yet to come 😄

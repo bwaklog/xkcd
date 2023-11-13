@@ -2,4 +2,4 @@
 
 clear
 echo xkcd-cli 🥳
-python xkcd.py $1 $2 
+python ./src/xkcd.py $1 $2 

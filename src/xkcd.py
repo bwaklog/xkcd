@@ -1,3 +1,4 @@
+
 import requests
 import sys
 import subprocess
@@ -73,7 +74,7 @@ def get_comic(verbose=False, comic="latest"):
 
 verbose, comic = False, "latest"
 flags = sys.argv[1:]
-# print(flags)
+print(flags)
 if flags != []:
     if flags[0] in ['-l', '--latest']:
         print("🚀 Getting latest comic")
@@ -83,9 +84,10 @@ if flags != []:
         print(f"🔎 Fetching comic {flags[0]}")
         comic = get_comic(verbose, flags[0])
         comic.display()
-    elif flags[0] in ['-a', '--all']:
-        pass
+    elif flags[0] in ['-h', '--help']:
+        os.system("cat help.txt")
     if len(flags) > 1:
+        print(flags)
         if flags[1] in ['-q', '--ql']:
             print("Trying Quick Look")
 
@@ -100,5 +102,13 @@ if flags != []:
             os.wait()
             os.remove('buff.png')
             print("👋🐍 hiss.")
+        # if (flags[2] != "") & (flags[2] in ["-s", "--save"]):
+        #     # checking for file location
+        #     try:
+        #         if flags[3] != "":
+        #             # if a path is provided
+        #             print(f"Saving to {flags[3]}")
+        #     except IndexError:
+        #         print("Saving to home directory")
 else:
     print("No flags passed")
