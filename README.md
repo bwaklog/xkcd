@@ -71,6 +71,7 @@ This is a small project, made with python to fetch a comic of your choice from t
 ### Tabulated stuff for professionalism 🫡
   |ツ|**Feature**|**Progress**|
   ---|---|---
+  |🔥|Fuzzy Searching Titles|🕺 In progress|
   |💾|Local Storage Option|🔘|
   |❤️|Liking\Bookmarking option to save comic no and not on local storage|🔘|
   |📩|Sharing feature (undecided)|WAP|
