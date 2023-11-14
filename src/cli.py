@@ -18,10 +18,14 @@ flags = sys.argv[1:]
 if verbose:
     print(flags)
 
-if sys.platform in ['darwin', 'linux']:
-    os.system("clear")
-else:
-    os.system("cls")
+
+def os_clear():
+    if sys.platform in ['darwin', 'linux']:
+        os.system("clear")
+    else:
+        os.system("cls")
+
+os_clear()
 
 if flags == []:
     print("No flags passed")
@@ -34,18 +38,27 @@ else:
         print("🚀 Getting Latest Comic")
         latest_num = gigaChecker.get_latest()
         comic = apiHelper.Comic(num=latest_num)
+        comic.cli_display()
 
 
     elif flags[0] in ['-s', '--search']:
         print("🔍 Starting fuzzyMode")
-        
+        a = 1
+        while a != 0:
+            os_clear()
+            a = fuzzyMode.fuzzy_prompt()
+            if type(a) == apiHelper.Comic:
+                comic = a
+                # comic object is now stored under varaible comic
+                break
+
 
     elif flags[0].isdigit():
         print(f"🌐 Fetching comci {flags[0]}")
         # check availablity
         comic = apiHelper.Comic(num=int(flags[0]))
         comic.cli_display()
-        comic.comic_display(True)
+        # comic.comic_display(True)
 
 
     elif flags[0] in ['-h', '--help']:
@@ -63,6 +76,7 @@ if len(flags) > 1:
     if set(flags).intersection(set(['-q', '--ql'])) != set():
         # code for running quick look/image opening feature
         print("Quicklook")
+        comic.comic_display()
 
     if set(flags).intersection(set(['-s', '--save'])) != set():
         # code for running saving features

@@ -1,6 +1,7 @@
 from thefuzz import fuzz, process
 import pandas as pd
 import numpy as np
+import apiHelper
 
 def closest(datasetColumn, query):
     return process.extract(
@@ -17,8 +18,31 @@ def data_set_fuzz(matched_data):
     for match_title in matched_data:
         # print(match_title)
         querry_num = df.loc[df['Title'] == str(match_title)].index.item()
-        comic = apiHelper.Comic(num=querry_num)
-        comic.cli_display()
+        # comic = apiHelper.Comic(num=querry_num)
+        # comic.cli_display()
+        print(f"Comic {querry_num}      : {match_title}")
+
+def fuzzy_prompt(inp='init'):
+        search_query = input("Enter a Title Name : ")
+        matches = list(map(lambda x: x[0],
+                            closest(
+                            datasetColumn=TITLE_COL,
+                            query=search_query
+                        )))
+        data_set_fuzz(matched_data=matches)
+        print("Search Other querry (s)")
+        print("Quit (q)")
+        comic_num = input("Enter Comic Number : ")
+        if comic_num.isalnum and comic_num.lower() == 's':
+            return 1
+        elif comic_num.isalpha and comic_num.lower == 'q':
+            return 0
+        else:
+            comic = apiHelper.Comic(num=int(comic_num))
+            comic.cli_display()
+            return comic
+
+
 
 
 def get_dataset(datasetColumn):
@@ -31,13 +55,13 @@ def get_dataset(datasetColumn):
         print("Incorrect dataset column query")
         quit()
 
-if __name__=="__main__":
-    title_col = get_dataset('Title')
-    alt_col = get_dataset('Alt')
-    # print(title_col)
+TITLE_COL = get_dataset('Title')
+# ALT_COL = get_dataset('Alt')
 
+if __name__=="__main__":
+    # print(title_col)
     query = input("Enter a querry : ")
-    matches = closest(title_col, query=query)
+    matches = closest(TITLE_COL, query=query)
     filtered_matches = list(map(lambda x: x[0], matches))
     print(matches)
     print(filtered_matches)
