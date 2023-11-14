@@ -2,6 +2,13 @@ import requests, urllib.request
 import os, sys, subprocess
 from PIL import Image
 from io import BytesIO
+import pandas as pd
+
+# ahh circular import
+def check_storage(num):
+    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df.set_index('Number', inplace=True)
+    return not df.loc[df.index == num].empty
 
 
 """
@@ -10,34 +17,39 @@ along with it
 1.  cli_display([, alt=False]) is a tool to display
     the details of the retrived comic in the CL
 2.  comic_display([, ql=False])
-
 """
 class Comic():
 
     # defining the structure of the object
-    def __init__(self, url) -> None:
+    def __init__(self, num) -> None:
 
-        if requests.get(url=url).status_code != 404:
+        if not check_storage(num):
+            url = f"https://xkcd.com/{num}/info.0.json"
+            if requests.get(url=url).status_code != 404:
 
-            comic = requests.get(url=url).json()
+                comic = requests.get(url=url).json()
 
-            self.month = comic['month']
-            self.num = comic['num']
-            self.link = f"https://xkcd.com/{self.num}"
-            self.year = comic['year']
-            self.news = comic['news']
-            self.safe_title = comic['safe_title']
-            self.transcript = comic['transcript']
-            self.alt = comic['alt']
-            self.img = comic['img']
-            self.title = comic['title']
-            self.day = comic['day']
+                self.num = comic['num']
+                self.title = comic['title']
+                self.safe_title = comic['safe_title']
+                self.link = f"https://xkcd.com/{self.num}"
+                self.img = comic['img']
+                self.transcript = comic['transcript']
+                self.alt = comic['alt']
 
+            else:
+                print("Out of range")
+                quit()
         else:
-            print("Out of range")
-            quit()
+            comic = csvTool(num=num)
+            self.num = comic.index.item()
+            self.title = comic['Title'].item()
+            self.safe_title = comic['SafeTitle'].item()
+            self.link = f"https://xkcd.com/{self.num}"
+            self.img = comic['IMGLink'].item()
+            self.transcript = comic['Transcript'].item()
+            self.alt = comic['Alt'].item()
 
-    
     def list_view(self):
         return [self.num, self.title, self.safe_title, self.link, self.img, self.transcript, self.alt]
 
@@ -48,7 +60,6 @@ class Comic():
 XKCD Comic {self.num}
     > Title             :   {self.title}
     > Safe-Title        :   {self.safe_title}
-    > Date              :   {months[int(self.month) - 1]} {self.year}
     > url               :   {self.link}
     > imgage url        :   {self.img}
     > transcript        :   {self.transcript}
@@ -82,10 +93,17 @@ XKCD Comic {self.num}
         print("👋🐍 hiss.") 
 
     # system saving functionality
+
+def csvTool(num):
+    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df.set_index('Number', inplace=True)
+    # return not df.loc[df.index == comic_number].empty
+    return df.loc[df.index == num]
     
 if __name__=="__main__":
-    comic = Comic("https://xkcd.com/234/info.0.json")
+    comic = Comic(234)
     comic.cli_display(True)
+    comic.comic_display(False)
 
 
 def ComicInvavailibilityError():
