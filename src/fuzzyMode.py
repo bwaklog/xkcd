@@ -13,7 +13,7 @@ def closest(datasetColumn, query):
 
 def data_set_fuzz(matched_data):
     import apiHelper
-    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number', inplace=True)
     for match_title in matched_data:
         # print(match_title)
@@ -47,7 +47,7 @@ def fuzzy_prompt(inp='init'):
 
 def get_dataset(datasetColumn):
     if datasetColumn in ['Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt']:
-        df = pd.read_csv('./resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+        df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
         df.set_index('Number', inplace=True)
         df.fillna('')
         return df[datasetColumn].to_list()

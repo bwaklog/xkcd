@@ -6,7 +6,7 @@ import pandas as pd
 
 # ahh circular import
 def check_storage(num):
-    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number', inplace=True)
     return not df.loc[df.index == num].empty
 
@@ -97,7 +97,7 @@ XKCD Comic {self.num}
     # system saving functionality
 
 def csvTool(num):
-    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number', inplace=True)
     # return not df.loc[df.index == comic_number].empty
     return df.loc[df.index == num]

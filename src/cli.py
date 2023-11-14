@@ -1,9 +1,9 @@
 import apiHelper
 import fuzzyMode
 import gigaChecker
-import subprocess, sys, os
+import sys, os
 
-HELP_FILE = "../help.txt"
+HELP_FILE = "./help.txt"
 
 # comic class : apiHelper.Comic
 
@@ -36,6 +36,7 @@ else:
 
     if flags[0] in ['-l', '--latest']:
         print("🚀 Getting Latest Comic")
+        gigaChecker.update_storage()
         latest_num = gigaChecker.get_latest()
         comic = apiHelper.Comic(num=latest_num)
         comic.cli_display()
@@ -62,12 +63,12 @@ else:
 
 
     elif flags[0] in ['-h', '--help']:
-        os.sysconf(f"cat {HELP_FILE}")
+        os.system(f"cat {HELP_FILE}")
         quit()
 
 
     else:
-        os.sysconf(f"cat {HELP_FILE}")
+        os.system(f"cat {HELP_FILE}")
         quit()
 
 if len(flags) > 1:
@@ -76,7 +77,10 @@ if len(flags) > 1:
     if set(flags).intersection(set(['-q', '--ql'])) != set():
         # code for running quick look/image opening feature
         print("Quicklook")
-        comic.comic_display()
+        if sys.platform == 'darwin':
+            comic.comic_display(ql=True)
+        else:
+            comic.comic_display()
 
     if set(flags).intersection(set(['-s', '--save'])) != set():
         # code for running saving features

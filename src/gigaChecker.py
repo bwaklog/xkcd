@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 
 def get_latest(verbose=False):
-    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number')
     latest = df[-1:].index.item()
     found = True
@@ -22,9 +22,8 @@ def update_storage():
         if i == 404:
             print("404 page")
         elif not check_storage(i):
-            comic_url = f"https://xkcd.com/{i}/info.0.json"
-            comic = Comic(url=comic_url)
-            with open('./resources/data.csv', mode='a', newline='\n') as f:
+            comic = Comic(num=i)
+            with open('./src/resources/data.csv', mode='a', newline='\n') as f:
                 writer = csv.writer(f, delimiter=',')
                 writer.writerow([comic.num, comic.title, comic.safe_title, \
                             comic.link, comic.img, comic.transcript, comic.alt])
@@ -35,7 +34,7 @@ def update_storage():
             break
 
 def check_storage(comic_number:int):
-    df = pd.read_csv('resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number', inplace=True)
     return not df.loc[df.index == comic_number].empty
 
