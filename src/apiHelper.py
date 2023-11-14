@@ -62,10 +62,13 @@ XKCD Comic {self.num}
     > Safe-Title        :   {self.safe_title}
     > url               :   {self.link}
     > imgage url        :   {self.img}
-    > transcript        :   {self.transcript}
+
 """)
         if alt:
-            print(f"    > alt               :   {self.alt}")
+            print(f"""
+    > transcript        :   {self.transcript}
+    > alt               :   {self.alt}
+""")
 
     # comic display functionality
     def comic_display(self, ql=False):
