@@ -42,17 +42,25 @@ else:
         comic.cli_display()
 
 
-    elif flags[0] in ['-s', '--search']:
+    elif flags[0] in ['-f', '--fuzzy']:
         print("🔍 Starting fuzzyMode")
         a = 1
         while a != 0:
-            os_clear()
             a = fuzzyMode.fuzzy_prompt()
             if type(a) == apiHelper.Comic:
                 comic = a
                 # comic object is now stored under varaible comic
                 break
 
+
+    elif flags[0] in ['-s', '--search']:
+        print("🕵️ Starting Search")
+        a = 1
+        while a != 0:
+            a = fuzzyMode.alt_serach()
+            if type(a) == apiHelper.Comic:
+                comic = a
+                break
 
     elif flags[0].isdigit():
         print(f"🌐 Fetching comci {flags[0]}")

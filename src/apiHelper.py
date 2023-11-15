@@ -62,6 +62,7 @@ XKCD Comic {self.num}
     > Safe-Title        :   {self.safe_title}
     > url               :   {self.link}
     > imgage url        :   {self.img}
+    > alt               :   {self.alt}
 """)
         if alt:
             print(f"""

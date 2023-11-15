@@ -2,6 +2,7 @@ from thefuzz import fuzz, process
 import pandas as pd
 import numpy as np
 import apiHelper
+from nltk.corpus import stopwords
 
 def closest(datasetColumn, query):
     return process.extract(
@@ -11,37 +12,92 @@ def closest(datasetColumn, query):
         limit=10
     )
 
-def data_set_fuzz(matched_data):
-    import apiHelper
+def data_set_fuzz(matched_data, col):
     df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number', inplace=True)
-    for match_title in matched_data:
-        # print(match_title)
-        querry_num = df.loc[df['Title'] == str(match_title)].index.item()
-        # comic = apiHelper.Comic(num=querry_num)
+    for match, percent_match in matched_data[::-1]:
+        querry_num = df.loc[df[col] == match].index.item()
+        comic = apiHelper.Comic(num=querry_num)
         # comic.cli_display()
-        print(f"Comic {querry_num}      : {match_title}")
+        print(f"Number : {comic.num}")
+        print(f'{"Title".ljust(15)}{comic.title}')
+        print(f'{"Alt".ljust(15)}{comic.alt}')
+        print(f"Match Percentage {percent_match}%")
+        print("====================================")
 
-def fuzzy_prompt(inp='init'):
+def fuzzy_prompt():
         search_query = input("Enter a Title Name : ")
-        matches = list(map(lambda x: x[0],
-                            closest(
-                            datasetColumn=TITLE_COL,
-                            query=search_query
-                        )))
-        data_set_fuzz(matched_data=matches)
+        matches_title = closest(
+            datasetColumn=TITLE_COL, 
+            query=search_query.title()
+        )
+        data_set_fuzz(matched_data=matches_title, col='Title')
         print("Search Other querry (s)")
         print("Quit (q)")
         comic_num = input("Enter Comic Number : ")
         if comic_num.isalnum and comic_num.lower() == 's':
             return 1
         elif comic_num.isalpha and comic_num.lower == 'q':
-            return 0
+            quit()
         else:
             comic = apiHelper.Comic(num=int(comic_num))
             comic.cli_display()
             return comic
 
+cahced_stopwords = stopwords.words("english")
+def stop_word_filter(string):
+    return ' '.join(
+        [
+            word
+            for word in str(string).split()
+            if word not in cahced_stopwords and word.isalnum()
+        ]
+    )
+
+def alt_serach():
+    alt_col = [str(string) for string in get_dataset('Alt')]
+    # alt_json = get_json('Alt')
+    # alt_col = [alt_json[num] for num in alt_json]
+    # alt_col_filtered = [stop_word_filter(string=string)for string in list(alt_col)]
+    title_col = TITLE_COL
+
+    search_querry = input("🔍 Search : ")
+    matched_title = like_fxn(datasetCol=title_col, search_querry=search_querry)
+    match_pair_find('Title', matched_title)
+    matched_alt = like_fxn(datasetCol=alt_col, search_querry=search_querry)
+    match_pair_find('Alt', matched_alt)
+
+    print("Search Other querry (s)")
+    print("Quit (q)")
+    comic_num = input("Enter Comic Number : ")
+    if comic_num.isalnum and comic_num.lower() == 's':
+        return 1
+    elif comic_num.isalpha and comic_num.lower == 'q':
+        quit()
+    else:
+        comic = apiHelper.Comic(num=int(comic_num))
+        comic.cli_display()
+        return comic
+
+
+def like_fxn(datasetCol, search_querry):
+    return [
+        alt
+        for alt in datasetCol
+        if search_querry in alt
+    ]
+
+def match_pair_find(datasetCol, data):
+    df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
+    df.set_index('Number', inplace=True)
+    for match in data[::-1]:
+        comic_num = df[df[datasetCol] == match].index.item()
+        comic = apiHelper.Comic(num=comic_num)
+        print(f"Number : {comic.num}")
+        print(f'{"Title".ljust(15)}{comic.title}')
+        print(f'{"Alt".ljust(15)}{comic.alt}')
+        # print(f"Match Percentage {percent_match}%")
+        print("====================================")
 
 
 
