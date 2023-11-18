@@ -1,5 +1,5 @@
 import apiHelper
-import fuzzyMode
+import fuzzyMode, webScrapy
 import gigaChecker
 import sys, os
 
@@ -60,7 +60,21 @@ else:
             a = fuzzyMode.alt_serach()
             if type(a) == apiHelper.Comic:
                 comic = a
+                os_clear()
+                comic.cli_display()
                 break
+
+    elif flags[0] in ['-g', '--google']:
+        print("🧠 Staring Web Scraping")
+        a = 1
+        while a != 0:
+            a = webScrapy.web_scrape()
+            if type(a) == apiHelper.Comic:
+                comic = a
+                os_clear()
+                comic.cli_display()
+                break
+
 
     elif flags[0].isdigit():
         print(f"🌐 Fetching comci {flags[0]}")

@@ -1,4 +1,5 @@
-from thefuzz import fuzz, process
+# from thefuzz import fuzz, process
+from rapidfuzz import process, fuzz, utils
 import pandas as pd
 import numpy as np
 import apiHelper
@@ -8,21 +9,22 @@ def closest(datasetColumn, query):
     return process.extract(
         query=query,
         choices=datasetColumn,
-        scorer=fuzz.token_sort_ratio,
-        limit=10
+        scorer=fuzz.WRatio,
+        limit=10,
+        processor=utils.default_process
     )
 
 def data_set_fuzz(matched_data, col):
     df = pd.read_csv('./src/resources/data.csv', names=['Number', 'Title', 'SafeTitle', 'Link', 'IMGLink', 'Transcript', 'Alt'])
     df.set_index('Number', inplace=True)
-    for match, percent_match in matched_data[::-1]:
+    for match, similarity, extra in matched_data[::-1]:
         querry_num = df.loc[df[col] == match].index.item()
         comic = apiHelper.Comic(num=querry_num)
         # comic.cli_display()
         print(f"Number : {comic.num}")
         print(f'{"Title".ljust(15)}{comic.title}')
         print(f'{"Alt".ljust(15)}{comic.alt}')
-        print(f"Match Percentage {percent_match}%")
+        print(f"Similarity = {similarity}")
         print("====================================")
 
 def fuzzy_prompt():
@@ -75,9 +77,7 @@ def alt_serach():
     elif comic_num.isalpha and comic_num.lower == 'q':
         quit()
     else:
-        comic = apiHelper.Comic(num=int(comic_num))
-        comic.cli_display()
-        return comic
+        return apiHelper.Comic(num=int(comic_num))
 
 
 def like_fxn(datasetCol, search_querry):
