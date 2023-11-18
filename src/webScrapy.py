@@ -3,9 +3,16 @@ from bs4 import BeautifulSoup
 import apiHelper
 
 def extract_links(query:str):
-    # making the query ready for google search
-    # xkcd emacs -> /search?q=xkcd+emacs
-    query = "+".join(query.strip().split(' '))
+    """
+    making the query ready for google search
+    xkcd emacs -> /search?q=xkcd+emacs
+    ^^^^ This prompt would be kinda shit
+
+    prompt : emacs programming
+    corrected prompt : emacs+programing
+    search querry : "xkcd+"+corrected prompt
+    """
+    query = "xkcd+comic+".join(query.strip().split(' '))
     comic_numbers = []
     page = requests.get(f"https://google.com/search?q={query}")
     soup = BeautifulSoup(page.content, features='html.parser')
