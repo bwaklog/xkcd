@@ -89,7 +89,7 @@ def update_storage():
 
     # print(comic_data_nlist) <- debug
 
-    with open('./src/resources/comics copy.csv', 'a') as f:
+    with open('./src/resources/comics.csv', 'a') as f:
         csv.writer(f).writerows(comic_data_nlist)
 
 
