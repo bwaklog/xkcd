@@ -37,7 +37,7 @@ else:
     if flags[0] in ['-l', '--latest']:
         print("🚀 Getting Latest Comic")
         gigaChecker.update_storage()
-        latest_num = gigaChecker.get_latest()
+        latest_num = gigaChecker.latest_in_db()
         comic = apiHelper.Comic(num=latest_num)
         comic.cli_display()
 

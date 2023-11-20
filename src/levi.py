@@ -1,5 +1,5 @@
-from thefuzz import fuzz, process
-import rapidfuzz
+# from thefuzz import fuzz, process
+from rapidfuzz import fuzz, process, utils
 import itertools
 import numpy as np
 
@@ -24,8 +24,3 @@ def leviDistance(word1:str, word2:str):
 
 ld = leviDistance("kitten", "sitting")
 print(ld/max(len("kitten"), len("sitting"))*100)
-
-ldf = fuzz.token_sort_ratio("kitten", "sitting")
-print(ldf)
-
-ldr = rapidfuzz.distance.levenshtein("kitten", "sitting")
