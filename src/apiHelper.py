@@ -127,7 +127,7 @@ class Comic():
         print(f"""
 XKCD Comic {self.num} - {self.title}
 > url       :   https://xkcd.com/{self.num}/
-> expalin   :   https://explainxkcd.com/{self.num}/
+> explain   :   https://explainxkcd.com/{self.num}/
 > image     :   {self.img}
 """)
         if extra:
