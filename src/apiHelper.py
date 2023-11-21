@@ -166,10 +166,3 @@ XKCD Comic {self.num} - {self.title}
         print("👋🐍 hiss.") 
 
     # system saving functionality
-
-
-    
-if __name__=="__main__":
-    comic = Comic(2856)
-    comic.cli_display()
-    # comic.comic_display(True)

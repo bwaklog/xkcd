@@ -22,32 +22,11 @@ def extract_links(query:str):
     xkcd_com_re = re.compile(r'https:\/\/xkcd\.com\/\d+\/') 
     comic_num_re = re.compile(r'\d+')
     for link in links:
-        # if 'https://xkcd.com/' in str(link):
-        #     print(link)
-        #     print("found")
         unfiltered = link.get('href')
-        # print(link)  
-        # if match:= xkcd_com_re.search(unfiltered):
-        #     print(match.group())
         if match:= xkcd_com_re.search(unfiltered):
-            # print(match.group())
             if num:= comic_num_re.search(match.group()):
-                # print(num)
                 comic = apiHelper.Comic(num=num.group())
                 comic.cli_display()
-
-
-    # xkcd_com_re = re.compile(r'https:\/\/xkcd\.com\/\d+\/')
-    # comic_no_re = re.compile(r'\d+')
-    # for link in links:
-    #     unfiltered_link = link.get('href')
-    #     if "https://xkcd.com" in unfiltered_link:
-    #         if match := xkcd_com_re.search(unfiltered_link):
-    #             url = match.group()
-    #             # print(f"URL : {match.group()}", end=" -> ")
-    #             comic_no = comic_no_re.search(url).group()
-    #             comic_numbers.append(comic_no)
-                # print(f"Comic No : {comic_no}")
 
     return list(set(comic_numbers))
 
@@ -67,9 +46,3 @@ def web_scrape():
         return 0
     elif comic_num.isdigit():
         return apiHelper.Comic(comic_num)
-
-if __name__=="__main__":
-    comic_numbers = extract_links("Indian")
-    # for num in comic_numbers:
-    #     comic = apiHelper.Comic(num=num)
-    #     comic.cli_display()

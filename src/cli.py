@@ -104,6 +104,7 @@ if len(flags) > 1:
         else:
             comic.comic_display()
 
-    if set(flags).intersection(set(['-s', '--save'])) != set():
-        # code for running saving features
-        print("Saving")
+    # Too lazy to add this 😞
+    # if set(flags).intersection(set(['-s', '--save'])) != set():
+    #     # code for running saving features
+    #     print("Saving but it dont work")

@@ -1,4 +1,3 @@
-# from thefuzz import fuzz, process
 from rapidfuzz import process, fuzz, utils
 import pandas as pd
 import numpy as np
@@ -56,11 +55,8 @@ def stop_word_filter(string):
 def alt_serach():
     alt_col = [str(string) for string in get_dataset('Alt')]
     
-    # title_col = TITLE_COL
 
     search_querry = input("🔍 Search : ")
-    # matched_title = like_fxn(datasetCol=title_col, search_querry=search_querry)
-    # match_pair_find('Title', matched_title)
     matched_alt = like_fxn(datasetCol=alt_col, search_querry=search_querry)
     match_pair_find('Alt', matched_alt)
 
@@ -107,15 +103,3 @@ def get_dataset(datasetColumn):
         quit()
 
 TITLE_COL = get_dataset('Title')
-# ALT_COL = get_dataset('Alt')
-
-if __name__=="__main__":
-    # print(title_col)
-    # print(TITLE_COL)
-    query = input("Enter a querry : ")
-    matches = closest(TITLE_COL, query=query)
-    filtered_matches = list(map(lambda x: x[0], matches))
-    print(matches)
-    # print(filtered_matches)
-    data_set_fuzz(matched_data=matches, col='Title')
-    

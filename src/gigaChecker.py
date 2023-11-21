@@ -87,12 +87,6 @@ def update_storage():
     else:
         os.system('cls')
 
-    # print(comic_data_nlist) <- debug
 
     with open('./src/resources/comics.csv', 'a') as f:
         csv.writer(f).writerows(comic_data_nlist)
-
-
-if __name__=="__main__":
-    # debug
-    update_storage()
