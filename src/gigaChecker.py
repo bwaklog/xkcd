@@ -13,7 +13,6 @@ thread_local = threading.local()
 
 comic_data_nlist = []
 
-
 # threading
 def get_session():
     if not hasattr(thread_local, "session"):
