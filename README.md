@@ -5,7 +5,7 @@
 
 This is the project i've used to demo fuzzy searching and web scraping in the HSP•PESUECC Project Expo ❤️
 
-- [Link to Presentation 📈](https://drive.google.com/file/d/1QNSJi1H8_Lws6mhIgv5GmphGJQGSscXN/view?usp=sharing)
+- [Link to Presentation 📈](https://docs.google.com/presentation/d/1KapKH3m2BfKAuwZvMP9RBlk4GlALjeME06s4oYKOkPc/edit?usp=sharing)
 
 - [Link to Blog Post 📑](https://bwaklog.vercel.app/pasta/2023/11/18/xkcd-grab-blog-post.html)
 
