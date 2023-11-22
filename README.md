@@ -3,6 +3,13 @@
 
 ![xkcd](https://github.com/bwaklog/xkcd-grab/assets/91192289/29085083-88b4-45af-ad4c-ef6e9000150f)
 
+This is the project i've used to demo fuzzy searching and web scraping in the HSP•PESUECC Project Expo ❤️
+
+- [Link to Presentation 📈](https://drive.google.com/file/d/1QNSJi1H8_Lws6mhIgv5GmphGJQGSscXN/view?usp=sharing)
+
+- [Link to Blog Post 📑](https://bwaklog.vercel.app/pasta/2023/11/18/xkcd-grab-blog-post.html)
+
+---
 
 Hey 👋
 This is a CLI tool utilising API's for retrieving user-requested xkcd comics. Its a relatively small sized project, which is WIP cuz of a lack of data. This project is somewhat of a playground for me to explore different searching and querying techniques. 
