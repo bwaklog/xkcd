@@ -33,8 +33,6 @@ Due to data limitation, I wanted to make it a goal to make it super easy to find
   ./install.sh
   ```
 
-![install.sh command](https://i.imgur.com/8QlLgXx.jpg)
-
 - Add xkcd alias to the path for easier commands
     Add alias to the path manually, I still have to figure out how to automate this. 
   ```bash
@@ -46,7 +44,15 @@ Due to data limitation, I wanted to make it a goal to make it super easy to find
   ```bash
   . venv/bin/activate
   ```
-  
+---
+
+### Fuzzy Search Demo
+![xkcd-grab-demo-fuzzy](https://github.com/bwaklog/xkcd-grab/assets/91192289/24dac00e-428b-4c06-88f0-f2ad23c3abcd)
+
+### Web Scraping Demo
+![xkcd-grab-demo-google-2](https://github.com/bwaklog/xkcd-grab/assets/91192289/d67e4689-e316-4d9b-b6d2-8907ebd3ca4d)
+
+---
 
   ### Commands Available
   <a name="commands-available"></a>
