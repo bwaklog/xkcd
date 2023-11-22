@@ -19,13 +19,8 @@ if verbose:
     print(flags)
 
 
-def os_clear():
-    if sys.platform in ['darwin', 'linux']:
-        os.system("clear")
-    else:
-        os.system("cls")
+os_clear = lambda : os.system("clear") if sys.platform in ['darwin', 'linux'] else os.system('cls')
 
-os_clear()
 
 if flags == []:
     print("No flags passed")
