@@ -21,8 +21,9 @@ Due to data limitation, I wanted to make it a goal to make it super easy to find
 1. [Installation and Usage](#usage)
     - [Commands Available](#commands-available)  
 2. [Cool Stuff](#cool-stuff)
-3. [Yet To Come](#yet-to-come)
-4. [Requirements - covered in Installation](#requirements)
+3. [Party Feature](#party-feature)
+4. [Yet To Come](#yet-to-come)
+5. [Requirements - covered in Installation](#requirements)
 
 ## Installation and Usage: 
 <a name="usage"></a>
@@ -123,6 +124,29 @@ The current `web scraping` function that is built into the app is the goal I am 
   |🤔|Flask generated page|TBA|
 
 
+## Party Feature: 
+<a name="party-feature"></a>
+
+> ⚠️ This is very much in devlopment, but here is how you can use the little orca-mini LLM to make the cli expaliln the comic
+
+1. Install [*ollama*](https://github.com/jmorganca/ollama)
+2. Install orca-mini's LLM using ollama (about 2.0 GB) 
+```shell
+ollama pull orca-mini
+# if ur familiar with docker, you know whats going on
+# also macos and linux only for now i guess (26th Nov)
+```
+3. Start the server in another temrinal window
+```shell
+ollama serve
+```
+4. Use the flag `-e` or `--explain` after fuzzy search, or web scraping for it to start generating after getting the results
+```shell
+xkcd -f -e
+```
+
+![](https://i.imgur.com/a2SsJtM.jpg)
+
 ## Requirements 
 <a name="requirements"></a>
 What i'm using for this program:
@@ -132,3 +156,4 @@ What i'm using for this program:
 - Yeah, I haven't used this on a windows pc so far, and some of these..._**most of these**_ commands are _UNIX_ commands so, **join the the Force with BASH 🕺**
 - running this in a venv for development, so do make sure you install all the requirements from `requirements.txt`
 - That's it for now...nothing else to force you to install..**other than python3**🐍
+- ollama and orca-mini for party feature

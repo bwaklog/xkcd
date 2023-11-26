@@ -14,10 +14,10 @@ def closest(datasetColumn, query):
     )
 
 def data_set_fuzz(matched_data, col):
-    df = pd.read_csv('./src/resources/comics.csv', header=0, names=['Number', 'Title', 'Img', 'Transcript', 'Alt', 'Content'])[1:]
+    df = pd.read_csv('./src/resources/comics.csv', header=0, names=['Number', 'Title', 'Img', 'Transcript', 'Alt', 'Content'])[0:]
     df.set_index('Number', inplace=True)
     for match, similarity, extra in matched_data[::-1]:
-        querry_num = df.loc[df[col] == match].index.item()
+        querry_num = df.loc[df[col] == str(match)].index.item()
         comic = apiHelper.Comic(num=querry_num)
         comic.cli_display()
         print(f"Similarity = {similarity}")

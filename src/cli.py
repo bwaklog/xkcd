@@ -2,6 +2,7 @@ import apiHelper
 import fuzzyMode, webScrapy
 import gigaChecker
 import sys, os
+import orca
 
 HELP_FILE = "./help.txt"
 
@@ -98,6 +99,15 @@ if len(flags) > 1:
             comic.comic_display(ql=True)
         else:
             comic.comic_display()
+
+    if set(flags).intersection(set(['-e', '--explain'])) != set():
+        print("Waiting for Orca LLM")
+        transcript = comic.content
+        print(transcript)
+        transcript = orca.filter_transcript(transcript)
+        os_clear()
+        comic.cli_display()
+        orca.generator(transcript, 'orca-mini')
 
     # Too lazy to add this 😞
     # if set(flags).intersection(set(['-s', '--save'])) != set():

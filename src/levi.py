@@ -31,4 +31,4 @@ def leviRatio(w1, w2):
         'distance' : d
     }
 
-print(leviRatio("cat", "bat"))
+print(leviRatio("knitten", "kitten"))
